@@ -1,0 +1,10 @@
+version: '2.4'
+services:
+
+  emulator:
+    image: emergency-letter-emulator
+    build:
+      context: .
+      dockerfile: Dockerfile-emulator
+    ports:
+      - "127.0.0.1:9000:8080"
