@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
     bucket = "luontola-terraform"
-    key = "emergency-letter/terraform.tfstate"
+    key = "emergency-letter/prod.tfstate"
     region = "eu-north-1"
   }
   required_providers {
@@ -22,10 +22,21 @@ provider "aws" {
 
 provider "docker" {}
 
-//resource "aws_vpc" "example" {
-//  cidr_block = "10.0.0.0/16"
-//}
-//
+locals {
+  common_tags = {
+    application = "emergency-letter"
+  }
+}
+
+resource "aws_ecr_repository" "releases" {
+  name = "emergency-letter"
+  image_tag_mutability = "MUTABLE"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+  tags = local.common_tags
+}
+
 //resource "docker_image" "nginx" {
 //  name = "nginx:latest"
 //  keep_locally = false
