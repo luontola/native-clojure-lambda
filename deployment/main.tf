@@ -9,18 +9,12 @@ terraform {
       source = "hashicorp/aws"
       version = "~> 3.0"
     }
-    docker = {
-      source = "kreuzwerker/docker"
-      version = "~> 2.0"
-    }
   }
 }
 
 provider "aws" {
   region = local.aws_region
 }
-
-provider "docker" {}
 
 locals {
   # TODO: eu-north-1 doesn't yet support container images for lambdas
@@ -29,6 +23,8 @@ locals {
     application = "emergency-letter"
   }
 }
+
+#### Docker image
 
 resource "aws_ecr_repository" "releases" {
   name = "emergency-letter"
@@ -39,14 +35,21 @@ resource "aws_ecr_repository" "releases" {
   tags = local.common_tags
 }
 
+data "aws_ecr_image" "app" {
+  registry_id = aws_ecr_repository.releases.registry_id
+  repository_name = aws_ecr_repository.releases.name
+  image_tag = "latest"
+}
+
+#### Lambda
+
 // noinspection MissingProperty - 'runtime' is nowadays optional, but IDEA warns about it
 resource "aws_lambda_function" "app" {
   function_name = "emergency-letter"
   image_uri = "${aws_ecr_repository.releases.repository_url}:latest"
   package_type = "Image"
   role = aws_iam_role.app.arn
-  # TODO: use image hash?
-  source_code_hash = filebase64sha256("../target/uberjar/emergency-letter.jar")
+  source_code_hash = replace(data.aws_ecr_image.app.id, "/^sha256:/", "")
   memory_size = 256
   environment {
     variables = {
@@ -73,6 +76,8 @@ resource "aws_iam_role" "app" {
   })
 }
 
+#### Output variables
+
 output "aws_region" {
   value = local.aws_region
 }
@@ -81,16 +86,6 @@ output "docker_repository_url" {
   value = aws_ecr_repository.releases.repository_url
 }
 
-//resource "docker_image" "nginx" {
-//  name = "nginx:latest"
-//  keep_locally = false
-//}
-//
-//resource "docker_container" "nginx" {
-//  image = docker_image.nginx.latest
-//  name = "tutorial"
-//  ports {
-//    internal = 80
-//    external = 8000
-//  }
-//}
+output "docker_image_id" {
+  value = data.aws_ecr_image.app.id
+}
