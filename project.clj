@@ -5,12 +5,15 @@
   :license {:name "Apache License 2.0"
             :url "https://www.apache.org/licenses/LICENSE-2.0"}
 
-  :dependencies [[org.clojure/clojure "1.10.1"]
-                 [medley "1.3.0"]]
+  :min-lein-version "2.9.0"
+  :dependencies [[com.amazonaws/aws-lambda-java-core "1.2.0"]
+                 [com.amazonaws/aws-lambda-java-runtime-interface-client "1.0.0"]
+                 [medley "1.3.0"]
+                 [org.clojure/clojure "1.10.1"]
+                 [uswitch/lambada "0.1.2"]]
   :managed-dependencies [[org.clojure/spec.alpha "0.2.187"]]
   :pedantic? :abort
 
-  :main ^:skip-aot kata
   :target-path "target/%s"
   :jvm-opts ["--illegal-access=deny"
              "-XX:-OmitStackTraceInFastThrow"]
@@ -18,7 +21,9 @@
   :aliases {"kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]}
   :plugins [[lein-ancient "0.6.15"]]
 
-  :profiles {:uberjar {:aot :all}
+  :profiles {:uberjar {:uberjar-name "emergency-letter.jar"
+                       :aot :all
+                       :omit-source true}
              :dev {:dependencies [[lambdaisland/kaocha "1.0.732"]
                                   [org.clojure/test.check "1.1.0"]]}
              :kaocha {}})
