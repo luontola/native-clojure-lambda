@@ -17,12 +17,13 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-north-1"
+  region = local.aws_region
 }
 
 provider "docker" {}
 
 locals {
+  aws_region = "eu-north-1"
   common_tags = {
     application = "emergency-letter"
   }
@@ -35,6 +36,14 @@ resource "aws_ecr_repository" "releases" {
     scan_on_push = true
   }
   tags = local.common_tags
+}
+
+output "aws_region" {
+  value = local.aws_region
+}
+
+output "docker_repository_url" {
+  value = aws_ecr_repository.releases.repository_url
 }
 
 //resource "docker_image" "nginx" {
