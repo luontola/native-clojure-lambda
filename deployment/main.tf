@@ -62,18 +62,29 @@ resource "aws_lambda_function" "app" {
 resource "aws_iam_role" "app" {
   name = "emergency-letter-lambda"
   assume_role_policy = jsonencode({
-    Version: "2012-10-17",
+    Version: "2012-10-17"
     Statement: [
       {
-        Action: "sts:AssumeRole",
+        Action: "sts:AssumeRole"
         Principal: {
           Service: "lambda.amazonaws.com"
-        },
-        Effect: "Allow",
-        Sid: ""
+        }
+        Effect: "Allow"
       }
     ]
   })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_basic_access" {
+  role = aws_iam_role.app.name
+  # permission to upload logs to CloudWatch
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_cloudwatch_log_group" "app" {
+  name = "/aws/lambda/${aws_lambda_function.app.function_name}"
+  retention_in_days = 30
+  tags = local.common_tags
 }
 
 #### Output variables
