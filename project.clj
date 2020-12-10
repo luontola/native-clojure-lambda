@@ -6,7 +6,7 @@
             :url "https://www.apache.org/licenses/LICENSE-2.0"}
 
   :min-lein-version "2.9.0"
-  :dependencies [[com.amazonaws/aws-lambda-java-core "1.2.0"]
+  :dependencies [[com.amazonaws/aws-lambda-java-core "1.2.1"]
                  [com.amazonaws/aws-lambda-java-runtime-interface-client "1.0.0"]
                  [medley "1.3.0"]
                  [org.clojure/clojure "1.10.1"]
@@ -15,6 +15,7 @@
   :pedantic? :abort
 
   :target-path "target/%s"
+  :main com.amazonaws.services.lambda.runtime.api.client.AWSLambda
   :jvm-opts ["--illegal-access=deny"
              "-XX:-OmitStackTraceInFastThrow"]
 
