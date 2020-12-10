@@ -17,4 +17,4 @@ CMD ["/bin/java", "--illegal-access=deny", \
              "--add-opens", "java.base/java.util=ALL-UNNAMED", \
              "-XX:MaxRAMPercentage=75.0", "-XX:+ExitOnOutOfMemoryError", \
              "-XshowSettings:vm", "-XX:+PrintCommandLineFlags", \
-             "-jar", "emergency-letter.jar", "emergency_letter.Handler"]
+             "-jar", "emergency-letter.jar"]

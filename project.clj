@@ -15,7 +15,7 @@
   :pedantic? :abort
 
   :target-path "target/%s"
-  :main com.amazonaws.services.lambda.runtime.api.client.AWSLambda
+  :main emergency-letter.main
   :jvm-opts ["--illegal-access=deny"
              "-XX:-OmitStackTraceInFastThrow"]
 
