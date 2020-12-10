@@ -1,4 +1,6 @@
-# emergency-letter
+# Emergency Letter
+
+Dead man's switch for decrypting secret messages with a time-delay lock.
 
 ## Developing
 

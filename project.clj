@@ -1,4 +1,10 @@
 (defproject emergency-letter "0.1.0-SNAPSHOT"
+
+  :description "Dead man's switch for decrypting secret messages with a time-delay lock."
+  :url "https://github.com/luontola/emergency-letter"
+  :license {:name "Apache License 2.0"
+            :url "https://www.apache.org/licenses/LICENSE-2.0"}
+
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [medley "1.3.0"]]
   :managed-dependencies [[org.clojure/spec.alpha "0.2.187"]]
