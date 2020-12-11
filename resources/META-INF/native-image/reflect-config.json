@@ -150,6 +150,9 @@
   "name":"clojure.lang.IFn"
 },
 {
+  "name":"clojure.lang.IHashEq"
+},
+{
   "name":"clojure.lang.IKVReduce"
 },
 {
@@ -220,6 +223,12 @@
 },
 {
   "name":"clojure.lang.Reflector"
+},
+{
+  "name":"clojure.lang.SeqIterator"
+},
+{
+  "name":"clojure.lang.Sequential"
 },
 {
   "name":"clojure.lang.StringSeq"
@@ -417,6 +426,9 @@
   "name":"java.lang.annotation.Retention"
 },
 {
+  "name":"java.lang.management.ManagementFactory"
+},
+{
   "name":"java.lang.reflect.Array"
 },
 {
@@ -545,8 +557,5 @@
 },
 {
   "name":"uswitch.lambada.core__init"
-},
-{
-  "name":"clojure.lang.PersistentList"
 }
 ]

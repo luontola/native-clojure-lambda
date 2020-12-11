@@ -3,4 +3,3 @@ set -euxo pipefail
 
 lein kaocha
 lein uberjar
-docker build --tag emergency-letter .

@@ -1,0 +1,14 @@
+FROM oracle/graalvm-ce:20.3.0-java11
+
+RUN gu install native-image
+
+RUN curl --location --output /usr/local/bin/aws-lambda-rie \
+        https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie && \
+    chmod a+x /usr/local/bin/aws-lambda-rie
+
+COPY lambda-bootstrap.sh /lambda-bootstrap.sh
+COPY target/uberjar/emergency-letter.jar emergency-letter.jar
+
+CMD ["/lambda-bootstrap.sh", "/usr/bin/java", \
+        "-agentlib:native-image-agent=config-output-dir=/tmp/native-image,config-write-period-secs=5", \
+        "-jar", "emergency-letter.jar"]

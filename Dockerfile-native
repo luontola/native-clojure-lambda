@@ -20,7 +20,9 @@ RUN native-image \
 
 FROM ubuntu
 
-COPY --from=builder /usr/local/bin/aws-lambda-rie /aws-lambda-rie
+COPY --from=builder /usr/local/bin/aws-lambda-rie /usr/local/bin/aws-lambda-rie
+
+COPY lambda-bootstrap.sh /lambda-bootstrap.sh
 COPY --from=builder /emergency-letter /
 
-CMD ["/emergency-letter"]
+CMD ["/lambda-bootstrap.sh", "/emergency-letter"]
