@@ -22,11 +22,12 @@ Deploy the app:
     docker-compose build native         # or "jvm"
     ./scripts/deploy.sh
 
-Run the app with OpenJDK: 
+Run the app with OpenJDK:
 
     docker-compose up -d --build jvm
 
-Run the app with GraalVM. This also writes native-image configuration to `resources/META-INF/native-image/*.json` files:
+Run the app with GraalVM. This also writes native-image configuration to `target/native-image` directory, from where you
+can copy them to `resources/META-INF/native-image` or its subdirectories:
 
     docker-compose up -d --build graalvm
 

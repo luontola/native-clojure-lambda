@@ -1,15 +1,14 @@
 [
 {
-  "name":"com.amazonaws.services.lambda.runtime.Context"
-},
-{
   "name":"com.amazonaws.services.lambda.runtime.LambdaRuntime",
   "fields":[{"name":"logger"}]
 },
 {
-  "name":"com.amazonaws.services.lambda.runtime.RequestStreamHandler"
+  "name":"java.util.Collections$UnmodifiableMap",
+  "fields":[{"name":"m"}]
 },
 {
-  "name":"com.amazonaws.services.lambda.runtime.api.client.AWSLambda"
+  "name":"jdk.internal.module.IllegalAccessLogger",
+  "fields":[{"name":"logger"}]
 }
 ]
