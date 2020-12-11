@@ -545,5 +545,8 @@
 },
 {
   "name":"uswitch.lambada.core__init"
+},
+{
+  "name":"clojure.lang.PersistentList"
 }
 ]

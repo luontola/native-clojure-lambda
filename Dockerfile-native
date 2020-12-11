@@ -1,0 +1,26 @@
+FROM oracle/graalvm-ce:20.3.0-java11 AS builder
+
+RUN gu install native-image
+
+RUN curl --location --output /usr/local/bin/aws-lambda-rie \
+        https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie && \
+    chmod a+x /usr/local/bin/aws-lambda-rie
+
+COPY target/uberjar/emergency-letter.jar emergency-letter.jar
+
+RUN native-image \
+        --no-fallback \
+        --report-unsupported-elements-at-runtime \
+        --initialize-at-build-time \
+        --initialize-at-run-time=com.amazonaws.services.lambda.runtime.api.client \
+        -jar emergency-letter.jar emergency-letter && \
+    chmod a+x emergency-letter
+
+########################################
+
+FROM ubuntu
+
+COPY --from=builder /usr/local/bin/aws-lambda-rie /aws-lambda-rie
+COPY --from=builder /emergency-letter /
+
+CMD ["/emergency-letter"]

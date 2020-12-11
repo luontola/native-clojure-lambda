@@ -2,7 +2,8 @@
 {
   "name":"com.amazonaws.services.lambda.runtime.api.client.runtimeapi.InvocationRequest",
   "fields":[
-    {"name":"content"}, 
+    {"name":"xrayTraceId"},
+    {"name":"content"},
     {"name":"deadlineTimeInMs"}, 
     {"name":"id"}, 
     {"name":"invokedFunctionArn"}

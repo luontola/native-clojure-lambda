@@ -6,10 +6,8 @@
   (:gen-class))
 
 (lambada/deflambdafn emergency_letter.Handler [^InputStream in ^OutputStream out ^Context ctx]
-  (println "emergency_letter.Handler called")
-  (prn 'in (slurp in))
-  (prn 'out out)
-  (prn 'ctx ctx))
+  (println "Hello world")
+  (println (slurp in)))
 
 (defn -main [& _args]
   (AWSLambda/main (into-array String ["emergency_letter.Handler"])))

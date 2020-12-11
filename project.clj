@@ -9,7 +9,7 @@
   :dependencies [[com.amazonaws/aws-lambda-java-core "1.2.1"]
                  [com.amazonaws/aws-lambda-java-runtime-interface-client "1.0.0"]
                  [medley "1.3.0"]
-                 [org.clojure/clojure "1.10.1"]
+                 [org.clojure/clojure "1.10.2-alpha4"] ; >= 1.10.2-alpha1 is needed to avoid org.graalvm.compiler.core.common.PermanentBailoutException: Frame states being merged are incompatible: unbalanced monitors - locked objects do not match
                  [uswitch/lambada "0.1.2"]]
   :managed-dependencies [[org.clojure/spec.alpha "0.2.187"]]
   :pedantic? :abort
