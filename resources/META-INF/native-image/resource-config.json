@@ -1,9 +1,9 @@
 {
   "resources":{
   "includes":[
-    {"pattern":"\\Qaws-lambda-runtime-interface-client.glibc.so\\E"},
-    {"pattern":"\\Qaws-lambda-runtime-interface-client.musl.so\\E"},
-    {"pattern":"\\Qclojure/core.clj\\E"},
+    {"pattern":"\\Qaws-lambda-runtime-interface-client.glibc.so\\E"}, 
+    {"pattern":"\\Qaws-lambda-runtime-interface-client.musl.so\\E"}, 
+    {"pattern":"\\Qclojure/core.clj\\E"}, 
     {"pattern":"\\Qclojure/core/protocols.clj\\E"}, 
     {"pattern":"\\Qclojure/core/protocols__init.class\\E"}, 
     {"pattern":"\\Qclojure/core/server.clj\\E"}, 

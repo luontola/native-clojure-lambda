@@ -10,5 +10,5 @@ COPY lambda-bootstrap.sh /
 COPY target/uberjar/emergency-letter.jar /
 
 CMD ["/lambda-bootstrap.sh", "/usr/bin/java", \
-        "-agentlib:native-image-agent=config-output-dir=/tmp/native-image,config-write-period-secs=5", \
+        "-agentlib:native-image-agent=config-merge-dir=/tmp/native-image,config-write-period-secs=5", \
         "-jar", "emergency-letter.jar"]
