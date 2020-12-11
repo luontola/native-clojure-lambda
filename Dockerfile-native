@@ -13,6 +13,7 @@ RUN native-image \
         --report-unsupported-elements-at-runtime \
         --initialize-at-build-time \
         --initialize-at-run-time=com.amazonaws.services.lambda.runtime.api.client \
+        -H:+PrintAnalysisCallTree \
         -jar emergency-letter.jar emergency-letter && \
     chmod a+x emergency-letter
 
