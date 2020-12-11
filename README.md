@@ -20,17 +20,11 @@ Deployment tools:
 - [tfenv](https://github.com/tfutils/tfenv)
 - [AWS CLI](https://aws.amazon.com/cli/)
 
-### Commands
+### Building
 
 Build the app:
 
     ./scripts/build.sh
-
-Deploy the app:
-
-    ./scripts/build.sh
-    docker-compose build native         # or "jvm"
-    ./scripts/deploy.sh
 
 Run the app with OpenJDK:
 
@@ -57,9 +51,31 @@ Shutdown the app:
 
     docker-compose down
 
+### Deploying
+
+Prepare the deployment environment in AWS:
+
+    # <change AWS_PROFILE in scripts/env-setup.sh> 
+    # <change terraform backend in deployment/main.tf>
+    . ./scripts/env-setup.sh 
+    cd deployment
+    terraform init
+    terraform apply    # will fail because the new ECR repo has no images, but that's okay
+
+Deploy the app:
+
+    ./scripts/build.sh
+    docker-compose build native         # or "jvm"
+    . ./scripts/env-setup.sh 
+    ./scripts/deploy.sh
+
 ### Terraform commands
 
 *All Terraform commands need to be run in the `deployment` directory.*
+
+Initialize the working directory. This creates a local cache in the `.terraform` directory:
+
+    terraform init
 
 Preview pending changes:
 
