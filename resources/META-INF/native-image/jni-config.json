@@ -1,0 +1,22 @@
+[
+{
+  "name":"com.amazonaws.services.lambda.runtime.api.client.runtimeapi.InvocationRequest",
+  "fields":[
+    {"name":"content"}, 
+    {"name":"deadlineTimeInMs"}, 
+    {"name":"id"}, 
+    {"name":"invokedFunctionArn"}
+  ]
+},
+{
+  "name":"emergency_letter.main",
+  "methods":[{"name":"main","parameterTypes":["java.lang.String[]"] }]
+},
+{
+  "name":"java.lang.ClassLoader",
+  "methods":[{"name":"getPlatformClassLoader","parameterTypes":[] }]
+},
+{
+  "name":"java.lang.NoSuchMethodError"
+}
+]

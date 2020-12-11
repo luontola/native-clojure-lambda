@@ -9,7 +9,7 @@ RUN curl --location --output /usr/local/bin/aws-lambda-rie \
 COPY target/uberjar/emergency-letter.jar emergency-letter.jar
 
 CMD ["/usr/local/bin/aws-lambda-rie", "/usr/bin/java", \
-        "-agentlib:native-image-agent=config-output-dir=/tmp/native-image", \
+        "-agentlib:native-image-agent=config-output-dir=/tmp/native-image,config-write-period-secs=5", \
         "--illegal-access=deny", \
         "--add-opens", "java.base/java.util=ALL-UNNAMED", \
         "-XX:MaxRAMPercentage=75.0", "-XX:+ExitOnOutOfMemoryError", \
