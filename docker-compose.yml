@@ -2,7 +2,7 @@ version: '2.4'
 services:
 
   jvm:
-    image: emergency-letter
+    image: hello-world
     build:
       context: .
       dockerfile: Dockerfile-jvm
@@ -10,7 +10,7 @@ services:
       - "127.0.0.1:9000:8080"
 
   graalvm:
-    image: emergency-letter
+    image: hello-world
     build:
       context: .
       dockerfile: Dockerfile-graalvm
@@ -20,7 +20,7 @@ services:
       - "127.0.0.1:9000:8080"
 
   native:
-    image: emergency-letter
+    image: hello-world
     build:
       context: .
       dockerfile: Dockerfile-native

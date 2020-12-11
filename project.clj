@@ -1,7 +1,7 @@
-(defproject emergency-letter "0.1.0-SNAPSHOT"
+(defproject native-clojure-lambda "0.1.0-SNAPSHOT"
 
-  :description "Dead man's switch for decrypting secret messages with a time-delay lock."
-  :url "https://github.com/luontola/emergency-letter"
+  :description "Example project of Clojure + GraalVM Native Image + AWS Lambda Containers"
+  :url "https://github.com/luontola/native-clojure-lambda"
   :license {:name "Apache License 2.0"
             :url "https://www.apache.org/licenses/LICENSE-2.0"}
 
@@ -15,14 +15,14 @@
   :pedantic? :abort
 
   :target-path "target/%s"
-  :main emergency-letter.main
+  :main hello-world.main
   :jvm-opts ["--illegal-access=deny"
              "-XX:-OmitStackTraceInFastThrow"]
 
   :aliases {"kaocha" ["with-profile" "+kaocha" "run" "-m" "kaocha.runner"]}
   :plugins [[lein-ancient "0.6.15"]]
 
-  :profiles {:uberjar {:uberjar-name "emergency-letter.jar"
+  :profiles {:uberjar {:uberjar-name "hello-world.jar"
                        :aot :all
                        :omit-source true}
              :dev {:dependencies [[lambdaisland/kaocha "1.0.732"]

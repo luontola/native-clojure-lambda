@@ -5,7 +5,7 @@ RUN curl --location --output /usr/local/bin/aws-lambda-rie \
     chmod a+x /usr/local/bin/aws-lambda-rie
 
 COPY lambda-bootstrap.sh /
-COPY target/uberjar/emergency-letter.jar /
+COPY target/uberjar/hello-world.jar /
 
 # com.amazonaws.services.lambda.runtime.api.client.util.EnvWriter.<init> accesses java.util.Collections$UnmodifiableMap.m
 CMD ["/lambda-bootstrap.sh", "/usr/bin/java", \
@@ -13,4 +13,4 @@ CMD ["/lambda-bootstrap.sh", "/usr/bin/java", \
         "--add-opens", "java.base/java.util=ALL-UNNAMED", \
         "-XX:MaxRAMPercentage=75.0", "-XX:+ExitOnOutOfMemoryError", \
         "-XshowSettings:vm", "-XX:+PrintCommandLineFlags", \
-        "-jar", "emergency-letter.jar"]
+        "-jar", "hello-world.jar"]

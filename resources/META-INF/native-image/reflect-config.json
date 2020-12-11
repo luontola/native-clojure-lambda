@@ -1,6 +1,6 @@
 [
 {
-  "name":"emergency_letter.Handler",
+  "name":"hello_world.Handler",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 }
 ]

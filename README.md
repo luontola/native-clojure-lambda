@@ -1,6 +1,6 @@
-# Emergency Letter
+# Native Clojure Lambda
 
-Dead man's switch for decrypting secret messages with a time-delay lock.
+Example project of Clojure + GraalVM Native Image + AWS Lambda Containers.
 
 ## Developing
 
