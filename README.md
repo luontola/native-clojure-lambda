@@ -1,14 +1,24 @@
 # Native Clojure Lambda
 
-Example project of Clojure + GraalVM Native Image + AWS Lambda Containers.
+Example project of [Clojure](https://clojure.org/) +
+[GraalVM Native Image](https://www.graalvm.org/reference-manual/native-image/) +
+[AWS Lambda container images](https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/).
 
 ## Developing
 
-Required tools:
+### Prerequisites
+
+Build tools:
 
 - [Java 11 JDK](https://www.oracle.com/java/technologies/javase-downloads.html)
-- [Leiningen](https://leiningen.org)
+- [Leiningen](https://leiningen.org/)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+Deployment tools:
+
 - [tfenv](https://github.com/tfutils/tfenv)
+- [AWS CLI](https://aws.amazon.com/cli/)
 
 ### Commands
 
