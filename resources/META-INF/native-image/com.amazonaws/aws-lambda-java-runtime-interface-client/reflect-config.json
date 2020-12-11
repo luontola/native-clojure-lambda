@@ -1,0 +1,15 @@
+[
+{
+  "name":"com.amazonaws.services.lambda.runtime.Context"
+},
+{
+  "name":"com.amazonaws.services.lambda.runtime.LambdaRuntime",
+  "fields":[{"name":"logger"}]
+},
+{
+  "name":"com.amazonaws.services.lambda.runtime.RequestStreamHandler"
+},
+{
+  "name":"com.amazonaws.services.lambda.runtime.api.client.AWSLambda"
+}
+]
