@@ -6,6 +6,8 @@
            (java.lang.management ManagementFactory GarbageCollectorMXBean))
   (:gen-class))
 
+(def handler-class "hello_world.Handler")
+
 (lambada/deflambdafn hello_world.Handler [^InputStream in ^OutputStream out ^Context ctx]
   (println "Hello world")
   (println (slurp in))
@@ -25,4 +27,4 @@
     (println (.getName bean) "-" (.getCollectionCount bean) "collections, time spent" (.getCollectionTime bean) "ms")))
 
 (defn -main [& _args]
-  (AWSLambda/main (into-array String ["hello_world.Handler"])))
+  (AWSLambda/main (into-array String [handler-class])))
