@@ -13,12 +13,13 @@ terraform {
 }
 
 provider "aws" {
-  region = local.aws_region
+  # TODO: eu-north-1 doesn't yet support container images for lambdas
+  region = "eu-west-1"
 }
 
+data "aws_region" "current" {}
+
 locals {
-  # TODO: eu-north-1 doesn't yet support container images for lambdas
-  aws_region = "eu-west-1"
   common_tags = {
     application = "native-clojure-lambda"
   }
@@ -90,7 +91,7 @@ resource "aws_cloudwatch_log_group" "app" {
 #### Output variables
 
 output "aws_region" {
-  value = local.aws_region
+  value = data.aws_region.current.name
 }
 
 output "docker_repository_url" {

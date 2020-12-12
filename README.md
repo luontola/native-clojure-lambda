@@ -60,7 +60,7 @@ Prepare the deployment environment in AWS:
     . ./scripts/env-setup.sh 
     cd deployment
     terraform init
-    terraform apply    # will fail because the new ECR repo has no images, but that's okay
+    terraform apply -target=aws_ecr_repository.releases -target=data.aws_region.current
 
 Deploy the app:
 
