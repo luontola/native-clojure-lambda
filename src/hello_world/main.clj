@@ -9,7 +9,16 @@
 (lambada/deflambdafn hello_world.Handler [^InputStream in ^OutputStream out ^Context ctx]
   (println "Hello world")
   (println (slurp in))
-  (println "uptime" (.getUptime (ManagementFactory/getRuntimeMXBean)) "ms"))
+  (println "uptime" (.getUptime (ManagementFactory/getRuntimeMXBean)) "ms")
+  (doseq [k ["java.specification.version"
+             "java.version"
+             "java.vm.name"
+             "java.vm.version"
+             "java.vendor"
+             "java.vendor.version"]]
+    (println k "=" (System/getProperty k)))
+  #_(doseq [[k v] (sort-by key (System/getProperties))]
+      (prn k v)))
 
 (defn -main [& _args]
   (AWSLambda/main (into-array String ["hello_world.Handler"])))
