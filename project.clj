@@ -16,6 +16,8 @@
 
   :target-path "target/%s"
   :main hello-world.main
+  :global-vars {*warn-on-reflection* true
+                *print-namespace-maps* false}
   :jvm-opts ["--illegal-access=deny"
              "-XX:-OmitStackTraceInFastThrow"]
 
