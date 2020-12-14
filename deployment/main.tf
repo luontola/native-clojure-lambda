@@ -57,6 +57,9 @@ resource "aws_lambda_function" "app" {
       foo = "bar"
     }
   }
+  tracing_config {
+    mode = "Active"
+  }
   tags = local.common_tags
 }
 
@@ -78,8 +81,15 @@ resource "aws_iam_role" "app" {
 
 resource "aws_iam_role_policy_attachment" "lambda_basic_access" {
   role = aws_iam_role.app.name
-  # permission to upload logs to CloudWatch
+  # "Provides write permissions to CloudWatch Logs."
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_role_policy_attachment" "xray_write_access" {
+  role = aws_iam_role.app.name
+  # "Allow the AWS X-Ray Daemon to relay raw trace segments data to the service's API
+  # and retrieve sampling data (rules, targets, etc.) to be used by the X-Ray SDK."
+  policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
 }
 
 resource "aws_cloudwatch_log_group" "app" {
